@@ -82,9 +82,6 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner signup_form_inner">
 						<h3>Create an account</h3>
-            <% if (message.length > 0) { %>
-                <div class="alert alert-danger"><%= message %></div>
-            <% } %>
 						<form class="row login_form" action="/signup" method="post" id="signup_form" >
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required>

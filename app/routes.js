@@ -26,12 +26,18 @@ module.exports = function(app, passport) {
         });
         // load the index.ejs file
     });
-
-    app.get('/checkout', isLoggedIn, function(req, res) {
-        res.render('checkout.ejs' ,{
+    app.get('/checkout', function(req, res) {
+        res.render('checkout.ejs', {
           user : req.user
-        }); // load the index.ejs file
+        });
+        // load the index.ejs file
     });
+
+    // app.get('/checkout', isLoggedIn, function(req, res) {
+    //     res.render('checkout.ejs' ,{
+    //       user : req.user
+    //     }); // load the index.ejs file
+    // });
 
     app.get('/single-product', isLoggedIn, function(req, res) {
         res.render('single-product' ,{
@@ -178,6 +184,7 @@ module.exports = function(app, passport) {
 
 
       var newcheckout = new checkout();
+      newcheckout.meals = req.body.meals;
       newcheckout.firstName = req.body.firstName;
       newcheckout.lastName = req.body.lastName;
       newcheckout.phonenumber = req.body.phonenumber;
@@ -185,6 +192,16 @@ module.exports = function(app, passport) {
       newcheckout.country = req.body.country;
       newcheckout.address = req.body.address;
       newcheckout.zip = req.body.zip;
+
+      newcheckout.save( function(err,newcheckout){
+   if (err) {
+     res.redirect('/checkout') ;
+     console.log(err);
+   }else{
+     res.redirect('/checkout') ;
+     console.log("Document save");
+   }
+ });
           });
 
 
